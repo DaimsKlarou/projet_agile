@@ -23,6 +23,7 @@ class Supplier(models.Model):
 # Modèle pour représenter les articles en stock
 class Product(models.Model):
     name = models.CharField(max_length=255)
+    # code = models.DecimalField(max_digits=12, unique=True, decimal_places=12)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="products")
     supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE, related_name="supplied_products")
     price = models.DecimalField(max_digits=10, decimal_places=2)  # Prix du produit

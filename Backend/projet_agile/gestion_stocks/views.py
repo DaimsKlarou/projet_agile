@@ -185,10 +185,14 @@ class ProductList(generics.ListCreateAPIView):
     serializer_class = ProductSerializer
     def get_queryset(self):
         queryset = Product.objects.all()
-        category_id = self.request.query_params.get('category_id')
+        category_id = self.request.query_params.get('category')
+        supplier_id = self.request.query_params.get('supplier')
         if category_id:
             queryset = queryset.filter(category_id=category_id)
-        return queryset    
+        if supplier_id:
+            queryset = queryset.filter(supplier_id=supplier_id)
+        return queryset
+        
 
 class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
